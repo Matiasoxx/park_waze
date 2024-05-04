@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "570470433164",
+    "project_id": "parkwaze-38a5a",
+    "storage_bucket": "parkwaze-38a5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570470433164:android:1d5027f906d20ef505d6a9",
+        "android_client_info": {
+          "package_name": "com.grupo1.parkwaze"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGUCG8o8t31JNwletUlGOt1eUgafC8QJA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

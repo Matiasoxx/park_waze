@@ -29,7 +29,9 @@ class LoginProvider extends ChangeNotifier {
         final String correo = result.docs.first.get('correoElectronico');
         final UserCredential userCredential = await _auth
             .signInWithEmailAndPassword(email: email, password: password);
-        onSucces();
+        final userData = await getUserData(email);
+        final String role = userData['rol'];
+        onSucces(role);
         return;
       }
       onError('No se encontró el email ingresado. ');

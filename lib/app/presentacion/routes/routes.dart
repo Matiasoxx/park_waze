@@ -5,4 +5,6 @@ class Routes {
   static const signIn = '/sign-in';
   static const home = '/home';
   static const login = '/login';
+  static const homeViewUser = '/homeuser';
+  static const homeViewaAdmin = '/homeadmin';
 }

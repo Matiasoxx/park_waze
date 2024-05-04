@@ -50,7 +50,7 @@ class _LoginViewState extends State<LoginView> {
       loginProvider.loginUser(
           email: emailLower,
           password: password,
-          onSucces: () async {
+          onSucces: (String role) async {
             User? user = FirebaseAuth.instance.currentUser;
             if (user != null && user.emailVerified) {
               setState(() {
@@ -63,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
               loginProvider.checkAuthState();
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
-                return HomeView(userData: userData);
+                return HomeView(userData: userData, role: role);
               }));
             } else {
               setState(() {

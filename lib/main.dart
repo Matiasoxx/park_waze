@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: const [Locale('es', 'ES'), Locale('en', 'EN')],
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.signIn,
+        initialRoute: Routes.login,
         routes: appRoutes,
       ),
     );

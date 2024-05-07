@@ -16,12 +16,12 @@ class HomeViewUser extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Bienvenido ${userData['name']}',
+              'Bienvenido ${userData['nombreCompleto']}',
               style: const TextStyle(fontSize: 24.0),
             ),
             const SizedBox(height: 20),
             Text(
-              'Correo Electrónico: ${userData['email']}',
+              'Correo Electrónico: ${userData['correoElectronico']}',
               style: const TextStyle(fontSize: 16.0),
             ),
             // Otros widgets según la información de userData

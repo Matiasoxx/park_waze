@@ -1,0 +1,8 @@
+{
+    "@@locale": "es",
+    "tWelcome" : "Bienvenido a Park Waze",
+    "languagePrompt": "Antes de empezar. Indicanos tú idioma de preferencia",
+    "english": "Inglés",
+    "spanish": "Español",
+    "accountPrompt": "¿Ya tienes una cuenta?"
+}

@@ -7,9 +7,11 @@ import 'package:park_waze/app/data/services/local_storage.dart';
 import 'package:park_waze/app/data/services/push_notification.dart';
 import 'package:park_waze/app/presentacion/routes/app_routes.dart';
 import 'package:park_waze/app/presentacion/routes/routes.dart';
+import 'package:park_waze/app/providers/localeProvider.dart';
 import 'package:park_waze/app/providers/login_provider.dart';
 import 'package:park_waze/app/providers/signin_provider.dart';
 import 'package:park_waze/firebase_options.dart';
+import 'package:park_waze/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -32,20 +34,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(lazy: false, create: (_) => LoginProvider()),
-        ChangeNotifierProvider(lazy: false, create: (_) => SignInProvider())
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(
+            create: (_) => LoginProvider()..checkAuthState()),
+        ChangeNotifierProvider(create: (_) => SignInProvider()),
       ],
-      child: MaterialApp(
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [Locale('es', 'ES'), Locale('en', 'EN')],
-        debugShowCheckedModeBanner: false,
-        initialRoute: Routes.login,
-        routes: appRoutes,
-      ),
+      child:
+          Consumer<LocaleProvider>(builder: (context, localeProvider, child) {
+        print("Current locale: ${localeProvider.locale.toString()}");
+        return MaterialApp(
+          locale: localeProvider.locale,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          debugShowCheckedModeBanner: false,
+          initialRoute: Routes.homeh,
+          routes: appRoutes,
+        );
+      }),
     );
   }
 }

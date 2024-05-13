@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:park_waze/app/presentacion/pages/home/views/home_page.dart';
 import 'package:park_waze/app/presentacion/pages/home/views/home_view.dart';
 import 'package:park_waze/app/presentacion/pages/home/views/home_view_admin.dart';
 import 'package:park_waze/app/presentacion/pages/home/views/home_view_user.dart';
@@ -22,5 +23,6 @@ Map<String, Widget Function(BuildContext)> get appRoutes {
           userData: null,
         ),
     Routes.login: (context) => const LoginView(),
+    Routes.homeh: (context) => const HomePageWidget(),
   };
 }

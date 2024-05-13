@@ -7,4 +7,5 @@ class Routes {
   static const login = '/login';
   static const homeViewUser = '/homeuser';
   static const homeViewaAdmin = '/homeadmin';
+  static const homeh = '/homeh';
 }

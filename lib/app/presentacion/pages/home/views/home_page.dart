@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:park_waze/app/providers/localeProvider.dart';
 import 'package:park_waze/generated/l10n.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home_page_model.dart';
 
@@ -22,6 +23,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   void initState() {
     super.initState();
     _model = HomePageModel();
+    _loadLocale();
+  }
+
+  void _loadLocale() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? languageCode = prefs.getString('language_code') ??
+        'en'; // Default to 'en' if nothing is saved
+    final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+    localeProvider.setLocale(Locale(languageCode));
+  }
+
+  void _changeLanguage(String newLanguageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language_code', newLanguageCode);
+    final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+    localeProvider.setLocale(Locale(newLanguageCode));
+    setState(() {}); // This will trigger the UI to rebuild with the new locale
   }
 
   @override
@@ -64,33 +82,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
                 DropdownButton<String>(
                   value: currentLanguageCode,
-                  icon: const Icon(Icons.arrow_downward),
-                  elevation: 16,
-                  style: GoogleFonts.plusJakartaSans(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                  underline: Container(
-                    height: 2,
-                    color: Theme.of(context).primaryColor,
-                  ),
                   onChanged: (String? newValue) {
                     if (newValue != null && newValue != currentLanguageCode) {
-                      localeProvider.setLocale(Locale(newValue));
-                      setState(() {});
+                      _changeLanguage(newValue);
                     }
                   },
                   items: <String>['en', 'es']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(
-                        value == 'en'
-                            ? S.of(context).english
-                            : S.of(context).spanish,
-                        style: const TextStyle(color: Colors.black),
-                      ),
+                      child: Text(value),
                     );
                   }).toList(),
                 ),
@@ -125,7 +126,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        child: const Text('Iniciar Sesión'),
+                        child: Text(S.of(context).bLogin),
                       ),
                       ElevatedButton(
                         onPressed: () {
@@ -143,7 +144,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        child: const Text('Registrarse'),
+                        child: Text(S.of(context).bRegister),
                       ),
                     ],
                   ),

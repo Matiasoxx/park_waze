@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accountPrompt":
             MessageLookupByLibrary.simpleMessage("¿Ya tienes una cuenta?"),
+        "bLogin": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
+        "bRegister": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "english": MessageLookupByLibrary.simpleMessage("Inglés"),
         "languagePrompt": MessageLookupByLibrary.simpleMessage(
             "Antes de empezar. Indicanos tú idioma de preferencia"),

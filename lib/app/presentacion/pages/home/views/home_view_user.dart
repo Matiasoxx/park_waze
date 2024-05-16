@@ -1,33 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:park_waze/app/presentacion/vistasusuario/bScaffold.dart';
+import 'package:park_waze/app/presentacion/vistasusuario/historyUser.dart';
+import 'package:park_waze/app/presentacion/vistasusuario/profileUser.dart';
+import 'package:park_waze/app/presentacion/vistasusuario/simularMontoview.dart';
 
-class HomeViewUser extends StatelessWidget {
+class HomeViewUser extends StatefulWidget {
   final dynamic userData;
-
   const HomeViewUser({super.key, required this.userData});
 
   @override
+  _HomeViewUserState createState() => _HomeViewUserState();
+}
+
+class _HomeViewUserState extends State<HomeViewUser> {
+  int _paginaActu = 0;
+
+  final List<Widget> _paginasUser = [
+    const ProfileUser(),
+    const SimularMontoView(),
+    const HistoryUserView(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _paginaActu = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bienvenido Usuario'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Bienvenido ${userData['nombreCompleto']}',
-              style: const TextStyle(fontSize: 24.0),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Correo Electrónico: ${userData['correoElectronico']}',
-              style: const TextStyle(fontSize: 16.0),
-            ),
-            // Otros widgets según la información de userData
-          ],
-        ),
-      ),
+    return BaseScaffold(
+      currentIndex: _paginaActu,
+      userData: widget.userData,
+      onNavTap: _onItemTapped,
+      pages: _paginasUser,
     );
   }
 }

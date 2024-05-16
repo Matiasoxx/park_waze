@@ -18,11 +18,12 @@ Map<String, Widget Function(BuildContext)> get appRoutes {
         ),
     Routes.homeViewUser: (context) => const HomeViewUser(
           userData: null,
-        ), // Agregar HomeViewUser
+        ),
     Routes.homeViewaAdmin: (context) => const HomeViewAdmin(
           userData: null,
         ),
     Routes.login: (context) => const LoginView(),
     Routes.homeh: (context) => const HomePageWidget(),
+    //Aqui se añade otra ruta como este formato
   };
 }

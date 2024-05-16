@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:park_waze/app/data/services/local_storage.dart';
 import 'package:park_waze/app/presentacion/pages/home/views/home_view.dart';
 import 'package:park_waze/app/providers/login_provider.dart';
+import 'package:park_waze/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
@@ -16,27 +18,19 @@ class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passFocusNode = FocusNode();
 
-  bool _isObscure = true; // This should not be final if you want to toggle
+  bool _isObscure = true;
   bool _isLoading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    // Here your token setup if necessary
-  }
 
   @override
   void dispose() {
     _emailController.dispose();
     _passController.dispose();
+    _emailFocusNode.dispose();
+    _passFocusNode.dispose();
     super.dispose();
-  }
-
-  void _togglePasswordVisibility() {
-    setState(() {
-      _isObscure = !_isObscure;
-    });
   }
 
   void onFormLogin(String email, String password, context) async {
@@ -113,16 +107,32 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    S.of(context).bLogin,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 34.0, // Tamaño de la fuente
+                      fontWeight: FontWeight.bold, // Grosor de la fuente
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
                 TextFormField(
                   controller: _emailController,
+                  focusNode: _emailFocusNode,
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     prefixIcon: Icon(Icons.email),
@@ -140,19 +150,24 @@ class _LoginViewState extends State<LoginView> {
                 const SizedBox(height: 20),
                 TextFormField(
                   controller: _passController,
+                  focusNode: _passFocusNode,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
                           _isObscure ? Icons.visibility : Icons.visibility_off),
-                      onPressed: _togglePasswordVisibility,
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
                     ),
                   ),
                   obscureText: _isObscure,
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 8) {
-                      return 'Contraseña invalida';
+                      return 'Password is too short';
                     }
                     return null;
                   },
@@ -166,7 +181,7 @@ class _LoginViewState extends State<LoginView> {
                   child: const Text('Login'),
                 ),
               ],
-            ),
+            ).animate().fade(),
           ),
         ),
       ),

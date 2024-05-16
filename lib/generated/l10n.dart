@@ -99,6 +99,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Registrarse`
+  String get bRegister {
+    return Intl.message(
+      'Registrarse',
+      name: 'bRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Iniciar sesión`
+  String get bLogin {
+    return Intl.message(
+      'Iniciar sesión',
+      name: 'bLogin',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

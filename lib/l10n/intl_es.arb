@@ -4,5 +4,12 @@
     "languagePrompt": "Antes de empezar. Indicanos tú idioma de preferencia",
     "english": "Inglés",
     "spanish": "Español",
-    "accountPrompt": "¿Ya tienes una cuenta?"
+    "accountPrompt": "¿Ya tienes una cuenta?",
+    "bRegister": "Registrarse",
+    "bLogin": "Iniciar sesión",
+
+    "taVerifyEmail":"Verifica tú correo electronico",
+    "aVerifyEmailBody":"Por favor verifica tu correo electrónico para continuar",
+    "AceptarButton":"Aceptar"
+    
 }

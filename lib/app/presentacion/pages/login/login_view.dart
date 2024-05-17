@@ -67,15 +67,14 @@ class _LoginViewState extends State<LoginView> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: const Text("Verifica tu correo"),
-                      content: const Text(
-                          "Por favor verifica tu correo electrónico para continuar"),
+                      title: Text(S.of(context).taVerifyEmail),
+                      content: Text(S.of(context).aVerifyEmailBody),
                       actions: [
                         TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Text("Aceptar")),
+                            child: Text(S.of(context).bAceptarButton)),
                       ],
                     );
                   });
@@ -96,7 +95,7 @@ class _LoginViewState extends State<LoginView> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text("Aceptar")),
+                          child: Text(S.of(context).bAceptarButton)),
                     ],
                   );
                 });
@@ -133,16 +132,16 @@ class _LoginViewState extends State<LoginView> {
                 TextFormField(
                   controller: _emailController,
                   focusNode: _emailFocusNode,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    prefixIcon: Icon(Icons.email),
+                  decoration: InputDecoration(
+                    labelText: S.of(context).lCorreo,
+                    prefixIcon: const Icon(Icons.email),
                   ),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null ||
                         value.isEmpty ||
                         !value.endsWith('@gmail.com')) {
-                      return 'Please enter a valid email';
+                      return S.of(context).validMail;
                     }
                     return null;
                   },
@@ -152,7 +151,7 @@ class _LoginViewState extends State<LoginView> {
                   controller: _passController,
                   focusNode: _passFocusNode,
                   decoration: InputDecoration(
-                    labelText: 'Password',
+                    labelText: S.of(context).lContra,
                     prefixIcon: const Icon(Icons.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -167,7 +166,7 @@ class _LoginViewState extends State<LoginView> {
                   obscureText: _isObscure,
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 8) {
-                      return 'Password is too short';
+                      return S.of(context).validPass;
                     }
                     return null;
                   },
@@ -178,7 +177,7 @@ class _LoginViewState extends State<LoginView> {
                     onFormLogin(
                         _emailController.text, _passController.text, context);
                   },
-                  child: const Text('Login'),
+                  child: Text(S.of(context).ingresar),
                 ),
               ],
             ).animate().fade(),

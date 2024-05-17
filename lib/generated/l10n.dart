@@ -119,6 +119,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Verifica tú correo electronico`
+  String get taVerifyEmail {
+    return Intl.message(
+      'Verifica tú correo electronico',
+      name: 'taVerifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor verifica tu correo electrónico para continuar.`
+  String get aVerifyEmailBody {
+    return Intl.message(
+      'Por favor verifica tu correo electrónico para continuar.',
+      name: 'aVerifyEmailBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aceptar`
+  String get bAceptarButton {
+    return Intl.message(
+      'Aceptar',
+      name: 'bAceptarButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correo Electrónico`
+  String get lCorreo {
+    return Intl.message(
+      'Correo Electrónico',
+      name: 'lCorreo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña`
+  String get lContra {
+    return Intl.message(
+      'Contraseña',
+      name: 'lContra',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor ingresa un correo electrónico valido.`
+  String get validMail {
+    return Intl.message(
+      'Por favor ingresa un correo electrónico valido.',
+      name: 'validMail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña muy corta. Asegurate que estas colocando tú contraseña de manera correcta.`
+  String get validPass {
+    return Intl.message(
+      'Contraseña muy corta. Asegurate que estas colocando tú contraseña de manera correcta.',
+      name: 'validPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingresar`
+  String get ingresar {
+    return Intl.message(
+      'Ingresar',
+      name: 'ingresar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

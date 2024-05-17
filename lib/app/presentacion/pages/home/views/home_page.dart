@@ -60,7 +60,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 170),
                 Text(
                   S.of(context).tWelcome,
                   style: GoogleFonts.urbanist(
@@ -81,7 +81,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
                 DropdownButton<String>(
-                  value: currentLanguageCode,
+                  value:
+                      currentLanguageCode, // Asegúrate de que este valor inicial está en la lista de valores de los items.
                   onChanged: (String? newValue) {
                     if (newValue != null && newValue != currentLanguageCode) {
                       _changeLanguage(newValue);
@@ -91,18 +92,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value),
+                      child: Text(
+                        value == 'en'
+                            ? S.of(context).english
+                            : S.of(context).spanish,
+                      ),
                     );
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-                Text(
-                  S.of(context).accountPrompt,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.urbanist(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0,
+                Padding(
+                  padding: const EdgeInsets.only(top: 45),
+                  child: Text(
+                    S.of(context).accountPrompt,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.urbanist(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0,
+                    ),
                   ),
                 ),
                 Padding(

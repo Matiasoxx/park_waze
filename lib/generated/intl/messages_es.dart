@@ -22,15 +22,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aVerifyEmailBody": MessageLookupByLibrary.simpleMessage(
+            "Por favor verifica tu correo electrónico para continuar."),
         "accountPrompt":
             MessageLookupByLibrary.simpleMessage("¿Ya tienes una cuenta?"),
+        "bAceptarButton": MessageLookupByLibrary.simpleMessage("Aceptar"),
         "bLogin": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "bRegister": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "english": MessageLookupByLibrary.simpleMessage("Inglés"),
+        "ingresar": MessageLookupByLibrary.simpleMessage("Ingresar"),
+        "lContra": MessageLookupByLibrary.simpleMessage("Contraseña"),
+        "lCorreo": MessageLookupByLibrary.simpleMessage("Correo Electrónico"),
         "languagePrompt": MessageLookupByLibrary.simpleMessage(
             "Antes de empezar. Indicanos tú idioma de preferencia"),
         "spanish": MessageLookupByLibrary.simpleMessage("Español"),
         "tWelcome":
-            MessageLookupByLibrary.simpleMessage("Bienvenido a Park Waze")
+            MessageLookupByLibrary.simpleMessage("Bienvenido a Park Waze"),
+        "taVerifyEmail": MessageLookupByLibrary.simpleMessage(
+            "Verifica tú correo electronico"),
+        "validMail": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingresa un correo electrónico valido."),
+        "validPass": MessageLookupByLibrary.simpleMessage(
+            "Contraseña muy corta. Asegurate que estas colocando tú contraseña de manera correcta.")
       };
 }

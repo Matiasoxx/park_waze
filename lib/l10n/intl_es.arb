@@ -9,7 +9,13 @@
     "bLogin": "Iniciar sesión",
 
     "taVerifyEmail":"Verifica tú correo electronico",
-    "aVerifyEmailBody":"Por favor verifica tu correo electrónico para continuar",
-    "AceptarButton":"Aceptar"
-    
+    "aVerifyEmailBody":"Por favor verifica tu correo electrónico para continuar.",
+    "bAceptarButton":"Aceptar",
+
+
+    "lCorreo":"Correo Electrónico",
+    "lContra":"Contraseña",
+    "validMail":"Por favor ingresa un correo electrónico valido.",
+    "validPass":"Contraseña muy corta. Asegurate que estas colocando tú contraseña de manera correcta.",
+    "ingresar":"Ingresar"
 }

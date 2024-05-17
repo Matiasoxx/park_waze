@@ -10,6 +10,11 @@
 
     "taVerifyEmail":"Verify your email",
     "aVerifyEmailBody":"Please verify your email to continue",
-    "AceptarButton":"Accept"
-    
+    "bAceptarButton":"Accept",
+
+    "lCorreo":"Email",
+    "lContra":"Password",
+    "validMail":"Please enter a valid email",
+    "validPass":"Very short password. Make sure you are entering your password correctly.",
+    "ingresar":"Get into"
 }

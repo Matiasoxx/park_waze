@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:park_waze/app/data/services/push_notification.dart';
 import 'package:park_waze/app/presentacion/pages/sign_in/vistas/sign_in_mixin.dart';
 import 'package:park_waze/app/providers/signin_provider.dart';
+import 'package:park_waze/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 class SignInView extends StatefulWidget {
@@ -25,8 +29,21 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
   final TextEditingController _patente = TextEditingController();
   String? _marcaSeleccionada;
   String? _modeloSeleccionado;
-  final List<String> _marcas = ['Ford', 'Chevrolet', 'Toyota', 'Honda', 'BMW'];
+  final List<String> _marcas = [
+    'Ford',
+    'Chevrolet',
+    'Toyota',
+    'Honda',
+    'BMW',
+    'Nissan',
+    'Volkswagen',
+    'Mercedes-Benz',
+    'Audi',
+    'Hyundai'
+  ];
   List<String> _modeloDeLaMarca = [];
+  File? _profileImage;
+  final ImagePicker _picker = ImagePicker();
 
   final bool _isObscure = true;
   bool _isLoading = false;
@@ -60,6 +77,17 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
     });
   }
 
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _profileImage = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   Future<void> saveUserAndVehicle() async {
     final signInProvider = Provider.of<SignInProvider>(context, listen: false);
     if (_formKey.currentState!.validate()) {
@@ -72,9 +100,7 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
           _isLoading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content:
-                  Text("Debe seleccionar una marca y modelo del vehículo")),
+          SnackBar(content: Text(S.of(context).marcAndModelRequired)),
         );
         return;
       }
@@ -86,9 +112,7 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
           _isLoading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content:
-                  Text("El correo ingresado está vinculado a otra cuenta.")),
+          SnackBar(content: Text(S.of(context).correoExist)),
         );
         return;
       }
@@ -100,8 +124,7 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
           _isLoading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              content: Text("La patente que ingresó ya se encuentra en uso")),
+          SnackBar(content: Text(S.of(context).patenteExist)),
         );
         return;
       }
@@ -118,26 +141,33 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
       }
 
       try {
+        String? profileImageUrl;
+        if (_profileImage != null) {
+          profileImageUrl =
+              await signInProvider.uploadProfileImage(_profileImage!);
+        }
+
         await signInProvider.registerUser(
           nombreCompleto: _nombreCompleto.text,
-          email: _correoElectronico.text,
+          email: _correoElectronico.text.trim(),
           fechaNacimiento: DateFormat('dd/MM/yyyy').format(dateBirth),
           edad: edad,
-          password: _contrasenha.text,
+          password: _contrasenha.text.trim(),
           role: UserRole.user,
           marca: _marcaSeleccionada!,
           modelo: _modeloSeleccionado!,
-          patente: _patente.text,
+          patente: _patente.text.toUpperCase().trim(),
           createdAt: formatedDate,
           token: token!,
+          profileImageUrl: profileImageUrl,
           onError: (error) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(error)));
           },
         );
         await FirebaseAuth.instance.currentUser!.sendEmailVerification();
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Revise su correo para verificar su cuenta")));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(S.of(context).reviewYourEmail)));
         Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
         setState(() {
           _isLoading = false;
@@ -171,7 +201,7 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Registrarse"),
+        title: Text(S.of(context).titleRegister),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -182,61 +212,63 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                _profileImage == null
+                    ? Text(S.of(context).noImagen)
+                    : Image.file(_profileImage!),
+                ElevatedButton(
+                  onPressed: _pickImage,
+                  child: Text(S.of(context).imagenButton),
+                ),
+                const SizedBox(height: 20),
                 TextFormField(
                   controller: _nombreCompleto,
                   decoration:
-                      const InputDecoration(labelText: 'Nombre Completo'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese su nombre completo.';
-                    }
-                    return null;
-                  },
+                      InputDecoration(labelText: S.of(context).labelName),
+                  validator: (value) => nombreCompletoValidator(value, context),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 TextFormField(
                   controller: _correoElectronico,
-                  decoration:
-                      const InputDecoration(labelText: 'Correo Electrónico'),
+                  decoration: InputDecoration(labelText: S.of(context).lCorreo),
                   keyboardType: TextInputType.emailAddress,
-                  validator: emailValidator,
+                  validator: (value) => emailValidator(value, context),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 TextFormField(
                   controller: _fechaNacimientoController,
-                  decoration: const InputDecoration(
-                    labelText: 'Fecha de Nacimiento',
+                  decoration: InputDecoration(
+                    labelText: S.of(context).lFechaNacimiento,
                     hintText: 'DD/MM/AAAA',
                   ),
                   readOnly: true,
                   onTap: () => selectDate(context),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Por favor, ingresa tu fecha de nacimiento.';
+                      return S.of(context).lValidDate;
                     }
                     return null;
                   },
                 ),
                 TextFormField(
                   controller: _contrasenha,
-                  decoration: const InputDecoration(labelText: 'Contraseña'),
+                  decoration: InputDecoration(labelText: S.of(context).lContra),
                   obscureText: true,
                   validator: (value) =>
-                      passwordValidator(value, _confirmarContra.text),
+                      passwordValidator(value, _confirmarContra.text, context),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 TextFormField(
                   controller: _confirmarContra,
                   decoration:
-                      const InputDecoration(labelText: 'Confirmar Contraseña'),
+                      InputDecoration(labelText: S.of(context).lCContra),
                   obscureText: true,
                   validator: (value) =>
-                      passwordValidator(value, _contrasenha.text),
+                      passwordValidator(value, _contrasenha.text, context),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 DropdownButtonFormField<String>(
                   value: _marcaSeleccionada,
-                  decoration:
-                      const InputDecoration(labelText: 'Marca del Vehículo'),
+                  decoration: InputDecoration(labelText: S.of(context).lMarca),
                   onChanged: _onMarcaChanged,
                   items: _marcas.map<DropdownMenuItem<String>>((String marca) {
                     return DropdownMenuItem<String>(
@@ -245,12 +277,11 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
                     );
                   }).toList(),
                   validator: (value) =>
-                      value == null ? 'Por favor seleccione una marca' : null,
+                      value == null ? S.of(context).lValidMarca : null,
                 ),
                 DropdownButtonFormField<String>(
                   value: _modeloSeleccionado,
-                  decoration:
-                      const InputDecoration(labelText: 'Modelo del Vehículo'),
+                  decoration: InputDecoration(labelText: S.of(context).lModelo),
                   onChanged: (String? newModelo) {
                     setState(() {
                       _modeloSeleccionado = newModelo;
@@ -264,19 +295,19 @@ class _SignInViewState extends State<SignInView> with SignInMixin {
                     );
                   }).toList(),
                   validator: (value) =>
-                      value == null ? 'Por favor seleccione un modelo' : null,
+                      value == null ? S.of(context).lValidModelo : null,
                 ),
                 TextFormField(
                   controller: _patente,
                   decoration:
-                      const InputDecoration(labelText: 'Patente del Vehículo'),
-                  validator: patenteValidator,
+                      InputDecoration(labelText: S.of(context).lPatente),
+                  validator: (value) => patenteValidator(value, context),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: saveUserAndVehicle,
-                  child: const Text('Registrar'),
+                  child: Text(S.of(context).titleRegister),
                 ),
               ],
             ),

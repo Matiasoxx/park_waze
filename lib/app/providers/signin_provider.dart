@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -22,7 +24,8 @@ class SignInProvider extends ChangeNotifier {
       required String patente,
       required String token,
       required Function(String) onError,
-      required String createdAt}) async {
+      required String createdAt,
+      String? profileImageUrl}) async {
     try {
       final String emailLower = email.toLowerCase();
       final bool emailexist = await checkEmailExist(emailLower);
@@ -51,6 +54,7 @@ class SignInProvider extends ChangeNotifier {
         'rol': describeEnum(role),
         'createdAt': FieldValue.serverTimestamp(),
         'token': token,
+        'profileImageUrl': profileImageUrl,
       });
       final bool patenteExist = await checkPatenteExist(patente);
       if (patenteExist) {
@@ -78,13 +82,13 @@ class SignInProvider extends ChangeNotifier {
     return result.docs.isNotEmpty;
   }
 
-  // //Metodo para guardar la imagen de el usuario se ponga foto de perfil
-  // Future<String> uploadImage(String ref, File file) async {
-  //   final UploadTask uploadTask = _storage.ref().child(ref).putFile(file);
-  //   final TaskSnapshot taskSnapshot = await uploadTask;
-  //   final String url = await taskSnapshot.ref.getDownloadURL();
-  //   return url;
-  // }
+  Future<String> uploadProfileImage(File image) async {
+    final String fileName = 'profileImages/${_auth.currentUser!.uid}.jpg';
+    final UploadTask uploadTask = _storage.ref().child(fileName).putFile(image);
+    final TaskSnapshot taskSnapshot = await uploadTask;
+    final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+    return downloadUrl;
+  }
 
   //Metodo ver si la patente esta siendo usada
   Future<bool> checkPatenteExist(String patente) async {

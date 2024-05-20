@@ -6,7 +6,8 @@ class Routes {
   static const home = '/home';
   static const login = '/login';
   static const homeViewUser = '/homeuser';
-  static const homeViewaAdmin = '/homeadmin';
+  static const homeViewAdmin = '/homeadmin';
   static const homeh = '/homeh';
+  static const reset_password = '/reset-pass';
   //Otra vez el mismo proceso aqui
 }

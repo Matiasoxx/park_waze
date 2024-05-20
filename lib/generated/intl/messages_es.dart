@@ -29,17 +29,75 @@ class MessageLookup extends MessageLookupByLibrary {
         "bAceptarButton": MessageLookupByLibrary.simpleMessage("Aceptar"),
         "bLogin": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "bRegister": MessageLookupByLibrary.simpleMessage("Registrarse"),
+        "correoExist": MessageLookupByLibrary.simpleMessage(
+            "El correo ingresado está vinculado a otra cuenta."),
+        "correoInvalid":
+            MessageLookupByLibrary.simpleMessage("Correo invalido"),
+        "defaultErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Ha ocurrido un error. Intentalo más tarde."),
+        "dialogAlertSendEmail": MessageLookupByLibrary.simpleMessage(
+            "Hemos enviado el correo electrónico, revisa tú bandeja de entrada"),
+        "dialogAlertSendEmailFailed": MessageLookupByLibrary.simpleMessage(
+            "El correo ingresado no existe en la base de datos. Intentalo otra vez."),
         "english": MessageLookupByLibrary.simpleMessage("Inglés"),
+        "envi": MessageLookupByLibrary.simpleMessage("Enviar"),
+        "forgotPassw":
+            MessageLookupByLibrary.simpleMessage("¿Olvidaste la contraseña?"),
+        "forgotPasswTit": MessageLookupByLibrary.simpleMessage(
+            "Ingresa tu correo electrónico y te enviaremos un correo para que recuperes tu contraseña."),
+        "imagenButton":
+            MessageLookupByLibrary.simpleMessage("Selecciona una imagen"),
         "ingresar": MessageLookupByLibrary.simpleMessage("Ingresar"),
+        "invalidPass":
+            MessageLookupByLibrary.simpleMessage("Contraseña invalida."),
+        "lCContra":
+            MessageLookupByLibrary.simpleMessage("Confirmar Contraseña"),
         "lContra": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "lCorreo": MessageLookupByLibrary.simpleMessage("Correo Electrónico"),
+        "lFechaNacimiento":
+            MessageLookupByLibrary.simpleMessage("Fecha de Nacimiento"),
+        "lMarca": MessageLookupByLibrary.simpleMessage("Marca del Vehículo"),
+        "lModelo": MessageLookupByLibrary.simpleMessage("Modelo del Vehículo"),
+        "lPatente":
+            MessageLookupByLibrary.simpleMessage("Patente del Vehículo"),
+        "lValidDate": MessageLookupByLibrary.simpleMessage(
+            "Por favor, ingresa tu fecha de nacimiento."),
+        "lValidMarca": MessageLookupByLibrary.simpleMessage(
+            "Por favor seleccione una marca"),
+        "lValidModelo": MessageLookupByLibrary.simpleMessage(
+            "Por favor selecciona un modelo"),
+        "labelName": MessageLookupByLibrary.simpleMessage("Nombre Completo"),
         "languagePrompt": MessageLookupByLibrary.simpleMessage(
             "Antes de empezar. Indicanos tú idioma de preferencia"),
+        "marcAndModelRequired": MessageLookupByLibrary.simpleMessage(
+            "Debe seleccionar una marca y modelo del vehículo."),
+        "nameNotEmpty": MessageLookupByLibrary.simpleMessage(
+            "El nombre no puede estar vacío."),
+        "nameRequired": MessageLookupByLibrary.simpleMessage(
+            "El nombre solo puede contener letras y espacios."),
+        "noImagen": MessageLookupByLibrary.simpleMessage(
+            "No has seleccionado una imagen"),
+        "passEmpty": MessageLookupByLibrary.simpleMessage(
+            "Por favor, ingrese una contraseña."),
+        "passNotSimilar": MessageLookupByLibrary.simpleMessage(
+            "Las contraseñas no coinciden."),
+        "passRequired": MessageLookupByLibrary.simpleMessage(
+            "La contraseña debe tener más de 8 caracteres."),
+        "patentEmpty": MessageLookupByLibrary.simpleMessage(
+            "Por favor, ingrese la patente del vehículo."),
+        "patentRequired": MessageLookupByLibrary.simpleMessage(
+            "La patente debe contener 4 letras sin vocales y 2 números al final."),
+        "patenteExist": MessageLookupByLibrary.simpleMessage(
+            "La patente que ingresó ya se encuentra en uso."),
+        "reviewYourEmail": MessageLookupByLibrary.simpleMessage(
+            "Revisa tú correo elecetronico para verificar la cuenta."),
         "spanish": MessageLookupByLibrary.simpleMessage("Español"),
         "tWelcome":
             MessageLookupByLibrary.simpleMessage("Bienvenido a Park Waze"),
         "taVerifyEmail": MessageLookupByLibrary.simpleMessage(
             "Verifica tú correo electronico"),
+        "titleRegister": MessageLookupByLibrary.simpleMessage("Registrarse"),
+        "tituloProyecto": MessageLookupByLibrary.simpleMessage("Park Waze"),
         "validMail": MessageLookupByLibrary.simpleMessage(
             "Por favor ingresa un correo electrónico valido."),
         "validPass": MessageLookupByLibrary.simpleMessage(

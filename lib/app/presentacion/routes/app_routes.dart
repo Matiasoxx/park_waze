@@ -8,18 +8,26 @@ import 'package:park_waze/app/presentacion/pages/sign_in/vistas/sign_in_view.dar
 import 'package:park_waze/app/presentacion/pages/splash/vistas/splash_view.dart';
 import 'package:park_waze/app/presentacion/routes/routes.dart';
 
-Map<String, Widget Function(BuildContext)> get appRoutes {
+Map<String, WidgetBuilder> get appRoutes {
   return {
     Routes.splash: (context) => const SplashView(),
     Routes.signIn: (context) => const SignInView(),
-    Routes.home: (context) => const HomeView(
-          userData: null,
-          role: '',
-        ),
+    Routes.home: (context) {
+      final args =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+      if (args == null) {
+        return const LoginView(); // O alguna otra vista de error
+      }
+      return HomeView(
+        userData: args['userData'],
+        role: args['role'],
+      );
+    },
     Routes.homeViewUser: (context) => const HomeViewUser(
           userData: null,
         ),
-    Routes.homeViewaAdmin: (context) => const HomeViewAdmin(
+    Routes.homeViewAdmin: (context) => const HomeViewAdmin(
           userData: null,
         ),
     Routes.login: (context) => const LoginView(),

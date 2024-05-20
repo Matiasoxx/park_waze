@@ -21,41 +21,63 @@ void main() async {
   await initializeDateFormatting('es_ES', null);
   await PushNotificationService.initializeApp();
   await LocalStorage().init();
-  final isLogged = LocalStorage().getIsLoggedIn();
 
-  runApp(MyApp(isLogged: isLogged));
+  // Inicializa el LocaleProvider y carga el idioma guardado
+  final localeProvider = LocaleProvider();
+  await localeProvider.loadLocale();
+  final isSignedIn = await LocalStorage().getIsSignedIn();
+  final userData = await LocalStorage().getUserData();
+  final userRole = await LocalStorage().getRole();
+  runApp(MyApp(
+    localeProvider: localeProvider,
+    isSignedIn: isSignedIn,
+    userData: userData,
+    userRole: userRole,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  final bool isLogged;
-  const MyApp({super.key, required this.isLogged});
+  final LocaleProvider localeProvider;
+  final bool isSignedIn;
+  final dynamic userData;
+  final String? userRole;
+  const MyApp(
+      {super.key,
+      required this.localeProvider,
+      required this.isSignedIn,
+      this.userData,
+      this.userRole});
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => localeProvider),
         ChangeNotifierProvider(
-            create: (_) => LoginProvider()..checkAuthState()),
+          create: (_) => LoginProvider()..checkAuthState(),
+        ),
         ChangeNotifierProvider(create: (_) => SignInProvider()),
       ],
-      child:
-          Consumer<LocaleProvider>(builder: (context, localeProvider, child) {
-        print("Current locale: ${localeProvider.locale.toString()}");
-        return MaterialApp(
-          locale: localeProvider.locale,
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          debugShowCheckedModeBanner: false,
-          initialRoute: Routes.homeh,
-          routes: appRoutes,
-        );
-      }),
+      child: Consumer<LocaleProvider>(
+        builder: (context, localeProvider, child) {
+          print("Current locale: ${localeProvider.locale.toString()}");
+          return MaterialApp(
+            locale: localeProvider.locale,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            debugShowCheckedModeBanner: false,
+            initialRoute: isSignedIn && userData != null && userRole != null
+                ? Routes.home
+                : Routes.login,
+            routes: appRoutes,
+          );
+        },
+      ),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:park_waze/app/presentacion/vistasusuario/simularMontoview.dart';
 
 class HomeViewUser extends StatefulWidget {
   final dynamic userData;
+
   const HomeViewUser({super.key, required this.userData});
 
   @override

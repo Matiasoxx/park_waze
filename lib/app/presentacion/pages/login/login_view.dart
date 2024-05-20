@@ -51,8 +51,8 @@ class _LoginViewState extends State<LoginView> {
                 _isLoading = false;
               });
               dynamic userData = await loginProvider.getUserData(user.email!);
-              await LocalStorage()
-                  .saveUserData(_emailController.text, _passController.text);
+              await LocalStorage().saveUserData(
+                  _emailController.text.trim(), _passController.text);
               await LocalStorage().setIsSignedIn(true);
               loginProvider.checkAuthState();
               Navigator.pushReplacement(context,
@@ -172,12 +172,23 @@ class _LoginViewState extends State<LoginView> {
                   },
                 ),
                 const SizedBox(height: 40),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/reset-pass');
+                    },
+                    child: Text(S.of(context).forgotPassw)),
                 ElevatedButton(
                   onPressed: () {
                     onFormLogin(
                         _emailController.text, _passController.text, context);
                   },
                   child: Text(S.of(context).ingresar),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/sign-in");
+                  },
+                  child: Text(S.of(context).bRegister),
                 ),
               ],
             ).animate().fade(),

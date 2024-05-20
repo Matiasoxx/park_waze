@@ -199,6 +199,326 @@ class S {
       args: [],
     );
   }
+
+  /// `¿Olvidaste la contraseña?`
+  String get forgotPassw {
+    return Intl.message(
+      '¿Olvidaste la contraseña?',
+      name: 'forgotPassw',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Park Waze`
+  String get tituloProyecto {
+    return Intl.message(
+      'Park Waze',
+      name: 'tituloProyecto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingresa tu correo electrónico y te enviaremos un correo para que recuperes tu contraseña.`
+  String get forgotPasswTit {
+    return Intl.message(
+      'Ingresa tu correo electrónico y te enviaremos un correo para que recuperes tu contraseña.',
+      name: 'forgotPasswTit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enviar`
+  String get envi {
+    return Intl.message(
+      'Enviar',
+      name: 'envi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hemos enviado el correo electrónico, revisa tú bandeja de entrada`
+  String get dialogAlertSendEmail {
+    return Intl.message(
+      'Hemos enviado el correo electrónico, revisa tú bandeja de entrada',
+      name: 'dialogAlertSendEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El correo ingresado no existe en la base de datos. Intentalo otra vez.`
+  String get dialogAlertSendEmailFailed {
+    return Intl.message(
+      'El correo ingresado no existe en la base de datos. Intentalo otra vez.',
+      name: 'dialogAlertSendEmailFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ha ocurrido un error. Intentalo más tarde.`
+  String get defaultErrorMessage {
+    return Intl.message(
+      'Ha ocurrido un error. Intentalo más tarde.',
+      name: 'defaultErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registrarse`
+  String get titleRegister {
+    return Intl.message(
+      'Registrarse',
+      name: 'titleRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No has seleccionado una imagen`
+  String get noImagen {
+    return Intl.message(
+      'No has seleccionado una imagen',
+      name: 'noImagen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selecciona una imagen`
+  String get imagenButton {
+    return Intl.message(
+      'Selecciona una imagen',
+      name: 'imagenButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nombre Completo`
+  String get labelName {
+    return Intl.message(
+      'Nombre Completo',
+      name: 'labelName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fecha de Nacimiento`
+  String get lFechaNacimiento {
+    return Intl.message(
+      'Fecha de Nacimiento',
+      name: 'lFechaNacimiento',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor, ingresa tu fecha de nacimiento.`
+  String get lValidDate {
+    return Intl.message(
+      'Por favor, ingresa tu fecha de nacimiento.',
+      name: 'lValidDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmar Contraseña`
+  String get lCContra {
+    return Intl.message(
+      'Confirmar Contraseña',
+      name: 'lCContra',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Marca del Vehículo`
+  String get lMarca {
+    return Intl.message(
+      'Marca del Vehículo',
+      name: 'lMarca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor seleccione una marca`
+  String get lValidMarca {
+    return Intl.message(
+      'Por favor seleccione una marca',
+      name: 'lValidMarca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Modelo del Vehículo`
+  String get lModelo {
+    return Intl.message(
+      'Modelo del Vehículo',
+      name: 'lModelo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor selecciona un modelo`
+  String get lValidModelo {
+    return Intl.message(
+      'Por favor selecciona un modelo',
+      name: 'lValidModelo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Patente del Vehículo`
+  String get lPatente {
+    return Intl.message(
+      'Patente del Vehículo',
+      name: 'lPatente',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El nombre no puede estar vacío.`
+  String get nameNotEmpty {
+    return Intl.message(
+      'El nombre no puede estar vacío.',
+      name: 'nameNotEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El nombre solo puede contener letras y espacios.`
+  String get nameRequired {
+    return Intl.message(
+      'El nombre solo puede contener letras y espacios.',
+      name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Correo invalido`
+  String get correoInvalid {
+    return Intl.message(
+      'Correo invalido',
+      name: 'correoInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor, ingrese una contraseña.`
+  String get passEmpty {
+    return Intl.message(
+      'Por favor, ingrese una contraseña.',
+      name: 'passEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña invalida.`
+  String get invalidPass {
+    return Intl.message(
+      'Contraseña invalida.',
+      name: 'invalidPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La contraseña debe tener más de 8 caracteres.`
+  String get passRequired {
+    return Intl.message(
+      'La contraseña debe tener más de 8 caracteres.',
+      name: 'passRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Las contraseñas no coinciden.`
+  String get passNotSimilar {
+    return Intl.message(
+      'Las contraseñas no coinciden.',
+      name: 'passNotSimilar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Por favor, ingrese la patente del vehículo.`
+  String get patentEmpty {
+    return Intl.message(
+      'Por favor, ingrese la patente del vehículo.',
+      name: 'patentEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La patente debe contener 4 letras sin vocales y 2 números al final.`
+  String get patentRequired {
+    return Intl.message(
+      'La patente debe contener 4 letras sin vocales y 2 números al final.',
+      name: 'patentRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debe seleccionar una marca y modelo del vehículo.`
+  String get marcAndModelRequired {
+    return Intl.message(
+      'Debe seleccionar una marca y modelo del vehículo.',
+      name: 'marcAndModelRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El correo ingresado está vinculado a otra cuenta.`
+  String get correoExist {
+    return Intl.message(
+      'El correo ingresado está vinculado a otra cuenta.',
+      name: 'correoExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La patente que ingresó ya se encuentra en uso.`
+  String get patenteExist {
+    return Intl.message(
+      'La patente que ingresó ya se encuentra en uso.',
+      name: 'patenteExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Revisa tú correo elecetronico para verificar la cuenta.`
+  String get reviewYourEmail {
+    return Intl.message(
+      'Revisa tú correo elecetronico para verificar la cuenta.',
+      name: 'reviewYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

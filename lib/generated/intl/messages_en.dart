@@ -29,20 +29,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "bAceptarButton": MessageLookupByLibrary.simpleMessage("Accept"),
         "bLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "bRegister": MessageLookupByLibrary.simpleMessage("Sign in"),
+        "chLengu": MessageLookupByLibrary.simpleMessage("Change language"),
         "correoExist": MessageLookupByLibrary.simpleMessage(
             "The email entered is linked to another account."),
         "defaultErrorMessage": MessageLookupByLibrary.simpleMessage(
             "An error has occurred. Try again later."),
+        "deletAcc": MessageLookupByLibrary.simpleMessage("Delete account"),
         "dialogAlertSendEmail": MessageLookupByLibrary.simpleMessage(
             "We have sent the email, check your inbox"),
         "dialogAlertSendEmailFailed": MessageLookupByLibrary.simpleMessage(
             "The email entered does not exist in the database.\nTry again."),
+        "edad": MessageLookupByLibrary.simpleMessage("Age"),
+        "editProf": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
         "envi": MessageLookupByLibrary.simpleMessage("Send"),
         "forgotPassw":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "forgotPasswTit": MessageLookupByLibrary.simpleMessage(
             "Enter your email address and we will send you \nan email to reset your password."),
+        "fullNam": MessageLookupByLibrary.simpleMessage("Full Name"),
         "imagenButton": MessageLookupByLibrary.simpleMessage("Select an image"),
         "ingresar": MessageLookupByLibrary.simpleMessage("Get into"),
         "invalidPass":
@@ -64,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "languagePrompt":
             MessageLookupByLibrary.simpleMessage("Please select your language"),
+        "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "marcAndModelRequired": MessageLookupByLibrary.simpleMessage(
             "You must select a make and model of the vehicle."),
         "nameNotEmpty":
@@ -93,6 +99,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verify your email"),
         "titleRegister": MessageLookupByLibrary.simpleMessage("Register"),
         "tituloProyecto": MessageLookupByLibrary.simpleMessage("Park Waze"),
+        "uvHistory": MessageLookupByLibrary.simpleMessage("History"),
+        "uvInicio": MessageLookupByLibrary.simpleMessage("Home"),
+        "uvMont": MessageLookupByLibrary.simpleMessage("Amount payable"),
+        "uvProfile": MessageLookupByLibrary.simpleMessage("Profile"),
         "validMail":
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "validPass": MessageLookupByLibrary.simpleMessage(

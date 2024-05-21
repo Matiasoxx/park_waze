@@ -29,22 +29,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "bAceptarButton": MessageLookupByLibrary.simpleMessage("Aceptar"),
         "bLogin": MessageLookupByLibrary.simpleMessage("Iniciar sesión"),
         "bRegister": MessageLookupByLibrary.simpleMessage("Registrarse"),
+        "chLengu": MessageLookupByLibrary.simpleMessage("Cambiar idioma"),
         "correoExist": MessageLookupByLibrary.simpleMessage(
             "El correo ingresado está vinculado a otra cuenta."),
         "correoInvalid":
             MessageLookupByLibrary.simpleMessage("Correo invalido"),
         "defaultErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Ha ocurrido un error. Intentalo más tarde."),
+        "deletAcc": MessageLookupByLibrary.simpleMessage("Eliminar cuenta"),
         "dialogAlertSendEmail": MessageLookupByLibrary.simpleMessage(
             "Hemos enviado el correo electrónico, revisa tú bandeja de entrada"),
         "dialogAlertSendEmailFailed": MessageLookupByLibrary.simpleMessage(
             "El correo ingresado no existe en la base de datos. Intentalo otra vez."),
+        "edad": MessageLookupByLibrary.simpleMessage("Edad"),
+        "editProf": MessageLookupByLibrary.simpleMessage("Editar Perfil"),
         "english": MessageLookupByLibrary.simpleMessage("Inglés"),
         "envi": MessageLookupByLibrary.simpleMessage("Enviar"),
         "forgotPassw":
             MessageLookupByLibrary.simpleMessage("¿Olvidaste la contraseña?"),
         "forgotPasswTit": MessageLookupByLibrary.simpleMessage(
             "Ingresa tu correo electrónico y te enviaremos un correo para que recuperes tu contraseña."),
+        "fullNam": MessageLookupByLibrary.simpleMessage("Nombre Completo"),
         "imagenButton":
             MessageLookupByLibrary.simpleMessage("Selecciona una imagen"),
         "ingresar": MessageLookupByLibrary.simpleMessage("Ingresar"),
@@ -69,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelName": MessageLookupByLibrary.simpleMessage("Nombre Completo"),
         "languagePrompt": MessageLookupByLibrary.simpleMessage(
             "Antes de empezar. Indicanos tú idioma de preferencia"),
+        "logout": MessageLookupByLibrary.simpleMessage("Cerrar Sesión"),
         "marcAndModelRequired": MessageLookupByLibrary.simpleMessage(
             "Debe seleccionar una marca y modelo del vehículo."),
         "nameNotEmpty": MessageLookupByLibrary.simpleMessage(
@@ -98,6 +104,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Verifica tú correo electronico"),
         "titleRegister": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "tituloProyecto": MessageLookupByLibrary.simpleMessage("Park Waze"),
+        "uvHistory": MessageLookupByLibrary.simpleMessage("Historial"),
+        "uvInicio": MessageLookupByLibrary.simpleMessage("Inicio"),
+        "uvMont": MessageLookupByLibrary.simpleMessage("Monto a pagar"),
+        "uvProfile": MessageLookupByLibrary.simpleMessage("Perfil"),
         "validMail": MessageLookupByLibrary.simpleMessage(
             "Por favor ingresa un correo electrónico valido."),
         "validPass": MessageLookupByLibrary.simpleMessage(

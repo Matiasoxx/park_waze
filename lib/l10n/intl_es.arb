@@ -52,5 +52,20 @@
     "marcAndModelRequired":"Debe seleccionar una marca y modelo del vehículo.",
     "correoExist":"El correo ingresado está vinculado a otra cuenta.",
     "patenteExist":"La patente que ingresó ya se encuentra en uso.",
-    "reviewYourEmail":"Revisa tú correo elecetronico para verificar la cuenta."
+    "reviewYourEmail":"Revisa tú correo elecetronico para verificar la cuenta.",
+
+    "uvInicio":"Inicio",
+    "uvMont":"Monto a pagar",
+    "uvHistory":"Historial",
+    "uvProfile":"Perfil",
+
+    "editProf":"Editar Perfil",
+    "chLengu":"Cambiar idioma",
+    "logout":"Cerrar Sesión",
+    "deletAcc":"Eliminar cuenta",
+
+    "fullNam":"Nombre Completo",
+    "edad":"Edad"
+
+
 }

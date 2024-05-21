@@ -140,6 +140,14 @@ class _LoginViewState extends State<LoginView> {
                     prefixIcon: const Icon(Icons.email),
                   ),
                   keyboardType: TextInputType.emailAddress,
+                  onChanged: (value) {
+                    if (_emailController.text != value.replaceAll(' ', '')) {
+                      _emailController.text = value.replaceAll(' ', '');
+                      _emailController.selection = TextSelection.fromPosition(
+                        TextPosition(offset: _emailController.text.length),
+                      );
+                    }
+                  },
                   validator: (value) {
                     if (value == null ||
                         value.isEmpty ||
@@ -166,6 +174,12 @@ class _LoginViewState extends State<LoginView> {
                       },
                     ),
                   ),
+                  onChanged: (value) {
+                    _passController.text = value.replaceAll(' ', '');
+                    _passController.selection = TextSelection.fromPosition(
+                      TextPosition(offset: _passController.text.length),
+                    );
+                  },
                   obscureText: _isObscure,
                   validator: (value) {
                     if (value == null || value.isEmpty || value.length < 8) {

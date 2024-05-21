@@ -2,6 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:park_waze/app/data/services/local_storage.dart';
+import 'package:park_waze/app/providers/localeProvider.dart';
+import 'package:park_waze/generated/l10n.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileUser extends StatefulWidget {
   const ProfileUser({super.key, required userData});
@@ -16,6 +20,7 @@ class _ProfileUserState extends State<ProfileUser> {
   late TextEditingController ageController;
   String profileImage = 'https://via.placeholder.com/150';
   bool isLoading = true;
+  String currentLanguageCode = 'en';
 
   @override
   void initState() {
@@ -23,6 +28,24 @@ class _ProfileUserState extends State<ProfileUser> {
     fullNameController = TextEditingController();
     ageController = TextEditingController();
     _loadUserData();
+    _loadLanguage();
+  }
+
+  Future<void> _loadLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      currentLanguageCode = prefs.getString('language_code') ?? 'en';
+    });
+  }
+
+  Future<void> _changeLanguage(String newLanguageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language_code', newLanguageCode);
+    final localeProvider = Provider.of<LocaleProvider>(context, listen: false);
+    localeProvider.setLocale(Locale(newLanguageCode));
+    setState(() {
+      currentLanguageCode = newLanguageCode;
+    });
   }
 
   Future<void> _loadUserData() async {
@@ -76,12 +99,12 @@ class _ProfileUserState extends State<ProfileUser> {
           ),
           const SizedBox(height: 20),
           Text(
-            'Nombre: ${fullNameController.text}',
+            '${S.of(context).fullNam}: ${fullNameController.text}',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           Text(
-            'Edad: ${ageController.text}',
+            '${S.of(context).edad}: ${ageController.text}',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
@@ -92,15 +115,34 @@ class _ProfileUserState extends State<ProfileUser> {
               });
             },
             icon: const Icon(Icons.edit),
-            label: const Text('Editar Perfil'),
+            label: Text(S.of(context).editProf),
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
           ),
+          Text(S.of(context).chLengu),
+          DropdownButton<String>(
+            value: currentLanguageCode,
+            onChanged: (String? newValue) {
+              if (newValue != null && newValue != currentLanguageCode) {
+                _changeLanguage(newValue);
+              }
+            },
+            items: <String>['en', 'es']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(
+                  value == 'en' ? S.of(context).english : S.of(context).spanish,
+                ),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 20),
           ElevatedButton.icon(
             onPressed: _logout,
             icon: const Icon(Icons.logout),
-            label: const Text('Cerrar Sesión'),
+            label: Text(S.of(context).logout),
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
@@ -109,7 +151,7 @@ class _ProfileUserState extends State<ProfileUser> {
           ElevatedButton.icon(
             onPressed: _deleteAccount,
             icon: const Icon(Icons.delete),
-            label: const Text('Eliminar Cuenta'),
+            label: Text(S.of(context).deletAcc),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -178,7 +220,7 @@ class _ProfileUserState extends State<ProfileUser> {
     await FirebaseAuth.instance.signOut();
     await LocalStorage().clearAll();
     Navigator.of(context).pushReplacementNamed(
-        '/login'); // Asegúrate de que '/login' sea la ruta correcta
+        '/homeh'); // Asegúrate de que '/login' sea la ruta correcta
   }
 
   Future<void> _deleteAccount() async {
@@ -189,8 +231,7 @@ class _ProfileUserState extends State<ProfileUser> {
           .doc(user.uid)
           .delete();
       await user.delete();
-      Navigator.of(context).pushReplacementNamed(
-          '/login'); // Asegúrate de que '/login' sea la ruta correcta
+      Navigator.of(context).pushReplacementNamed('/homeh');
     }
   }
 }

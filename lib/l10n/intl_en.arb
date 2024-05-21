@@ -51,5 +51,19 @@
     "marcAndModelRequired":"You must select a make and model of the vehicle.",
     "correoExist":"The email entered is linked to another account.",
     "patenteExist":"The patent you entered is already in use.",
-    "reviewYourEmail":"Check your email to verify the account."
+    "reviewYourEmail":"Check your email to verify the account.",
+
+    "uvInicio":"Home",
+    "uvMont":"Amount payable",
+    "uvHistory":"History",
+    "uvProfile":"Profile",
+
+
+    "editProf":"Edit Profile",
+    "chLengu":"Change language",
+    "logout":"Log out",
+    "deletAcc":"Delete account",
+
+    "fullNam":"Full Name",
+    "edad":"Age"
 }

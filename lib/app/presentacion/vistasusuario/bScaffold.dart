@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:park_waze/generated/l10n.dart';
 
 class BaseScaffold extends StatelessWidget {
   final int currentIndex;
@@ -33,22 +34,22 @@ class BaseScaffold extends StatelessWidget {
         unselectedFontSize: 12,
         showUnselectedLabels: true,
         elevation: 10,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
+            icon: const Icon(Icons.home),
+            label: S.of(context).uvInicio,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.attach_money),
-            label: 'Monto a pagar',
+            icon: const Icon(Icons.attach_money),
+            label: S.of(context).uvMont,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Historial',
+            icon: const Icon(Icons.history),
+            label: S.of(context).uvHistory,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_box),
-            label: 'Perfil',
+            icon: const Icon(Icons.account_box),
+            label: S.of(context).uvProfile,
           ),
         ],
       ),

@@ -519,6 +519,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Inicio`
+  String get uvInicio {
+    return Intl.message(
+      'Inicio',
+      name: 'uvInicio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monto a pagar`
+  String get uvMont {
+    return Intl.message(
+      'Monto a pagar',
+      name: 'uvMont',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Historial`
+  String get uvHistory {
+    return Intl.message(
+      'Historial',
+      name: 'uvHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Perfil`
+  String get uvProfile {
+    return Intl.message(
+      'Perfil',
+      name: 'uvProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Editar Perfil`
+  String get editProf {
+    return Intl.message(
+      'Editar Perfil',
+      name: 'editProf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cambiar idioma`
+  String get chLengu {
+    return Intl.message(
+      'Cambiar idioma',
+      name: 'chLengu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cerrar Sesión`
+  String get logout {
+    return Intl.message(
+      'Cerrar Sesión',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eliminar cuenta`
+  String get deletAcc {
+    return Intl.message(
+      'Eliminar cuenta',
+      name: 'deletAcc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nombre Completo`
+  String get fullNam {
+    return Intl.message(
+      'Nombre Completo',
+      name: 'fullNam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edad`
+  String get edad {
+    return Intl.message(
+      'Edad',
+      name: 'edad',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

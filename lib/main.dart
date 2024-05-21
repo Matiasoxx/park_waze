@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -21,8 +22,11 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Intl.defaultLocale = 'es_ES';
   await initializeDateFormatting('es_ES', null);
-  await PushNotificationService.initializeApp();
   await LocalStorage().init();
+
+  if (!kIsWeb) {
+    await PushNotificationService.initializeApp();
+  }
 
   // Inicializa el LocaleProvider y carga el idioma guardado
   final localeProvider = LocaleProvider();
@@ -30,12 +34,24 @@ void main() async {
   final isSignedIn = await LocalStorage().getIsSignedIn();
   final userData = await LocalStorage().getUserData();
   final userRole = await LocalStorage().getRole();
-  runApp(MyApp(
-    localeProvider: localeProvider,
-    isSignedIn: isSignedIn,
-    userData: userData,
-    userRole: userRole,
-  ));
+
+  if (kIsWeb) {
+    runApp(MyApp(
+      localeProvider: localeProvider,
+      isSignedIn: false, // Forzamos a no estar autenticado para web
+      userData: null,
+      userRole: null,
+      initialRoute: Routes.login, // Cambiamos la ruta inicial para web
+    ));
+  } else {
+    runApp(MyApp(
+      localeProvider: localeProvider,
+      isSignedIn: isSignedIn,
+      userData: userData,
+      userRole: userRole,
+      initialRoute: Routes.splash, // Ruta inicial normal para Android
+    ));
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -43,12 +59,15 @@ class MyApp extends StatelessWidget {
   final bool isSignedIn;
   final dynamic userData;
   final String? userRole;
+  final String initialRoute; // Añadido para manejar la ruta inicial
+
   const MyApp({
     super.key,
     required this.localeProvider,
     required this.isSignedIn,
     this.userData,
     this.userRole,
+    required this.initialRoute, // Añadido para manejar la ruta inicial
   });
 
   @override
@@ -74,7 +93,7 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: S.delegate.supportedLocales,
             debugShowCheckedModeBanner: false,
-            initialRoute: Routes.splash,
+            initialRoute: initialRoute, // Usamos initialRoute aquí
             routes: appRoutes,
             onGenerateRoute: (settings) {
               if (isSignedIn && userData != null && userRole != null) {

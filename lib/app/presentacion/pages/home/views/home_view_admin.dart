@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:park_waze/app/presentacion/vista_admin/aScaffold.dart';
+import 'package:park_waze/app/presentacion/vista_admin/estadisticas.dart';
+import 'package:park_waze/app/presentacion/vista_admin/profileAdmin.dart';
 
-class HomeViewAdmin extends StatelessWidget {
+class HomeViewAdmin extends StatefulWidget {
   final dynamic userData;
-
   const HomeViewAdmin({super.key, required this.userData});
 
   @override
+  _HomeViewAdminState createState() => _HomeViewAdminState();
+}
+
+class _HomeViewAdminState extends State<HomeViewAdmin> {
+  int _selectedIndex = 0;
+
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Center(child: Text('Inicio')),
+    const EstadisticasView(),
+    const ProfileAdminView(
+        userData: null), // Asegúrate de pasar userData correctamente
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bienvenido Admin'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Bienvenido ${userData['nombreCompleto']}',
-              style: const TextStyle(fontSize: 24.0),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Correo Electrónico: ${userData['correoElectronico']}',
-              style: const TextStyle(fontSize: 16.0),
-            ),
-            // Otros widgets según la información de userData
-          ],
-        ),
-      ),
+    return AdminScaffold(
+      selectedIndex: _selectedIndex,
+      onItemTapped: _onItemTapped,
+      body: _widgetOptions.elementAt(_selectedIndex),
     );
   }
 }

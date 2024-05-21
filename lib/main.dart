@@ -35,23 +35,15 @@ void main() async {
   final userData = await LocalStorage().getUserData();
   final userRole = await LocalStorage().getRole();
 
-  if (kIsWeb) {
-    runApp(MyApp(
-      localeProvider: localeProvider,
-      isSignedIn: false, // Forzamos a no estar autenticado para web
-      userData: null,
-      userRole: null,
-      initialRoute: Routes.login, // Cambiamos la ruta inicial para web
-    ));
-  } else {
-    runApp(MyApp(
-      localeProvider: localeProvider,
-      isSignedIn: isSignedIn,
-      userData: userData,
-      userRole: userRole,
-      initialRoute: Routes.splash, // Ruta inicial normal para Android
-    ));
-  }
+  runApp(MyApp(
+    localeProvider: localeProvider,
+    isSignedIn: isSignedIn,
+    userData: userData,
+    userRole: userRole,
+    initialRoute: kIsWeb
+        ? Routes.login
+        : Routes.splash, // Ajustar la ruta inicial segÃºn la plataforma
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -59,7 +51,7 @@ class MyApp extends StatelessWidget {
   final bool isSignedIn;
   final dynamic userData;
   final String? userRole;
-  final String initialRoute; // Añadido para manejar la ruta inicial
+  final String initialRoute;
 
   const MyApp({
     super.key,
@@ -67,7 +59,7 @@ class MyApp extends StatelessWidget {
     required this.isSignedIn,
     this.userData,
     this.userRole,
-    required this.initialRoute, // Añadido para manejar la ruta inicial
+    required this.initialRoute,
   });
 
   @override
@@ -82,7 +74,6 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<LocaleProvider>(
         builder: (context, localeProvider, child) {
-          print("Current locale: ${localeProvider.locale.toString()}");
           return MaterialApp(
             locale: localeProvider.locale,
             localizationsDelegates: const [
@@ -93,7 +84,7 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: S.delegate.supportedLocales,
             debugShowCheckedModeBanner: false,
-            initialRoute: initialRoute, // Usamos initialRoute aquí
+            initialRoute: initialRoute,
             routes: appRoutes,
             onGenerateRoute: (settings) {
               if (isSignedIn && userData != null && userRole != null) {

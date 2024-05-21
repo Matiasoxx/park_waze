@@ -10,6 +10,11 @@ class HistoryUserView extends StatefulWidget {
 class _HistoryUserViewState extends State<HistoryUserView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Center(
+      child: Text(
+        'Vista de Historial',
+        style: TextStyle(fontSize: 24),
+      ),
+    );
   }
 }

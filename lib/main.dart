@@ -5,6 +5,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:park_waze/app/data/services/local_storage.dart';
 import 'package:park_waze/app/data/services/push_notification.dart';
+import 'package:park_waze/app/presentacion/pages/home/views/home_view_admin.dart';
+import 'package:park_waze/app/presentacion/pages/home/views/home_view_user.dart';
 import 'package:park_waze/app/presentacion/routes/app_routes.dart';
 import 'package:park_waze/app/presentacion/routes/routes.dart';
 import 'package:park_waze/app/providers/localeProvider.dart';
@@ -41,12 +43,13 @@ class MyApp extends StatelessWidget {
   final bool isSignedIn;
   final dynamic userData;
   final String? userRole;
-  const MyApp(
-      {super.key,
-      required this.localeProvider,
-      required this.isSignedIn,
-      this.userData,
-      this.userRole});
+  const MyApp({
+    super.key,
+    required this.localeProvider,
+    required this.isSignedIn,
+    this.userData,
+    this.userRole,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +74,22 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: S.delegate.supportedLocales,
             debugShowCheckedModeBanner: false,
-            initialRoute: isSignedIn && userData != null && userRole != null
-                ? Routes.home
-                : Routes.login,
+            initialRoute: Routes.splash,
             routes: appRoutes,
+            onGenerateRoute: (settings) {
+              if (isSignedIn && userData != null && userRole != null) {
+                if (userRole == 'user') {
+                  return MaterialPageRoute(
+                    builder: (_) => HomeViewUser(userData: userData),
+                  );
+                } else if (userRole == 'admin') {
+                  return MaterialPageRoute(
+                    builder: (_) => HomeViewAdmin(userData: userData),
+                  );
+                }
+              }
+              return null; // Dejar que MaterialApp maneje la ruta
+            },
           );
         },
       ),

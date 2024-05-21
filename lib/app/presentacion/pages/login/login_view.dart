@@ -52,8 +52,11 @@ class _LoginViewState extends State<LoginView> {
               });
               dynamic userData = await loginProvider.getUserData(user.email!);
               await LocalStorage().saveUserData(
-                  _emailController.text.trim(), _passController.text);
+                _emailController.text.trim(),
+                _passController.text,
+              );
               await LocalStorage().setIsSignedIn(true);
+              await LocalStorage().saveRole(role);
               loginProvider.checkAuthState();
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {

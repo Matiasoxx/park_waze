@@ -1,63 +1,46 @@
-import 'package:connectivity_plus/connectivity_plus.dart'; // Suponiendo que usas este paquete para la conectividad
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:park_waze/app/presentacion/routes/routes.dart';
+import 'package:park_waze/app/data/services/local_storage.dart';
+import 'package:park_waze/app/presentacion/pages/home/views/home_view_admin.dart';
+import 'package:park_waze/app/presentacion/pages/home/views/home_view_user.dart';
+import 'package:park_waze/app/presentacion/pages/login/login_view.dart';
 
-class SplashView extends StatefulWidget {
-  const SplashView({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashView> createState() => _SplashViewState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashViewState extends State<SplashView> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => _init());
+    _checkAuth();
   }
 
-  Future<void> _init() async {
-    // Verificar la conexión a internet primero
-    var connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult == ConnectivityResult.none) {
-      _showNoInternetDialog();
-      return;
-    }
+  Future<void> _checkAuth() async {
+    final isSignedIn = await LocalStorage().getIsSignedIn();
+    final userData = await LocalStorage().getUserData();
+    final userRole = await LocalStorage().getRole();
 
-    // Autenticación y navegación
-    _checkAuthentication();
-  }
-
-  void _checkAuthentication() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    if (auth.currentUser != null && auth.currentUser!.emailVerified) {
-      Navigator.pushReplacementNamed(context,
-          Routes.home); // Asume que esta es la ruta de la página principal
+    if (isSignedIn && userData != null && userRole != null) {
+      if (userRole == 'user') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomeViewUser(userData: userData)),
+        );
+      } else if (userRole == 'admin') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomeViewAdmin(userData: userData)),
+        );
+      }
     } else {
-      Navigator.pushReplacementNamed(context,
-          Routes.signIn); // Asume que esta es la ruta de inicio de sesión
-    }
-  }
-
-  void _showNoInternetDialog() {
-    if (mounted) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Sin conexión'),
-          content: const Text(
-              'No hay conexión a internet. Por favor, verifica tu conexión y vuelve a intentarlo.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                _init(); // Reintenta inicializar
-              },
-              child: const Text('Reintentar'),
-            ),
-          ],
-        ),
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginView()),
       );
     }
   }
@@ -65,13 +48,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 80,
-          height: 80,
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      body: Center(child: CircularProgressIndicator()),
     );
   }
 }

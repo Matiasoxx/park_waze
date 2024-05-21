@@ -19,6 +19,11 @@ class LocalStorage {
     await prefs.setString('password', password);
   }
 
+  Future<void> saveRole(String role) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('role', role);
+  }
+
   Future<void> setIsSignedIn(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isSignedIn', value);

@@ -19,21 +19,37 @@ class BaseScaffold extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Park Waze'),
+        automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: pages[currentIndex],
-      ),
+      body: pages[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onNavTap,
         currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        selectedFontSize: 14,
+        unselectedFontSize: 12,
+        showUnselectedLabels: true,
+        elevation: 10,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.attach_money), label: 'Monto a pagar'),
+            icon: Icon(Icons.home),
+            label: 'Inicio',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.history), label: 'Historial'),
+            icon: Icon(Icons.attach_money),
+            label: 'Monto a pagar',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_box), label: 'Perfil'),
+            icon: Icon(Icons.history),
+            label: 'Historial',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_box),
+            label: 'Perfil',
+          ),
         ],
       ),
     );

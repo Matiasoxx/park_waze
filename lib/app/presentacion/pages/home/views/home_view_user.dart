@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:park_waze/app/presentacion/vistasusuario/bScaffold.dart';
 import 'package:park_waze/app/presentacion/vistasusuario/historyUser.dart';
+import 'package:park_waze/app/presentacion/vistasusuario/houseUser.dart';
 import 'package:park_waze/app/presentacion/vistasusuario/profileUser.dart';
 import 'package:park_waze/app/presentacion/vistasusuario/simularMontoview.dart';
 
@@ -15,12 +16,18 @@ class HomeViewUser extends StatefulWidget {
 
 class _HomeViewUserState extends State<HomeViewUser> {
   int _paginaActu = 0;
+  late List<Widget> _paginasUser;
 
-  final List<Widget> _paginasUser = [
-    const ProfileUser(),
-    const SimularMontoView(),
-    const HistoryUserView(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _paginasUser = [
+      const HouseUserView(),
+      const SimularMontoView(),
+      const HistoryUserView(),
+      ProfileUser(userData: widget.userData),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {

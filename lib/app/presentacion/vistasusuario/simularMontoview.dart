@@ -10,6 +10,11 @@ class SimularMontoView extends StatefulWidget {
 class _SimularMontoViewState extends State<SimularMontoView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Center(
+      child: Text(
+        'Vista de Simulación de Monto',
+        style: TextStyle(fontSize: 24),
+      ),
+    );
   }
 }

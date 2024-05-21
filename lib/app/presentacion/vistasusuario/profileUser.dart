@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:park_waze/app/data/services/local_storage.dart';
 
 class ProfileUser extends StatefulWidget {
   const ProfileUser({super.key, required userData});
@@ -96,6 +97,24 @@ class _ProfileUserState extends State<ProfileUser> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
           ),
+          ElevatedButton.icon(
+            onPressed: _logout,
+            icon: const Icon(Icons.logout),
+            label: const Text('Cerrar Sesión'),
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            ),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton.icon(
+            onPressed: _deleteAccount,
+            icon: const Icon(Icons.delete),
+            label: const Text('Eliminar Cuenta'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            ),
+          ),
         ],
       ),
     );
@@ -152,6 +171,26 @@ class _ProfileUserState extends State<ProfileUser> {
         'edad': int.tryParse(ageController.text) ?? 0,
         'profileImageUrl': profileImage,
       });
+    }
+  }
+
+  Future<void> _logout() async {
+    await FirebaseAuth.instance.signOut();
+    await LocalStorage().clearAll();
+    Navigator.of(context).pushReplacementNamed(
+        '/login'); // Asegúrate de que '/login' sea la ruta correcta
+  }
+
+  Future<void> _deleteAccount() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('Usuarios')
+          .doc(user.uid)
+          .delete();
+      await user.delete();
+      Navigator.of(context).pushReplacementNamed(
+          '/login'); // Asegúrate de que '/login' sea la ruta correcta
     }
   }
 }

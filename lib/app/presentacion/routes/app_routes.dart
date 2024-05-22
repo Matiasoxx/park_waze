@@ -14,7 +14,6 @@ import 'package:park_waze/app/presentacion/vista_admin/preferencias_view.dart';
 import 'package:park_waze/app/presentacion/vista_admin/profileAdmin.dart';
 import 'package:park_waze/app/presentacion/vista_admin/tiempo_estacionamiento_view.dart';
 
-
 Map<String, Widget Function(BuildContext)> get appRoutes {
   return {
     Routes.splash: (context) => const SplashScreen(),
@@ -32,7 +31,7 @@ Map<String, Widget Function(BuildContext)> get appRoutes {
     Routes.login: (context) => const LoginView(),
     Routes.homeh: (context) => const HomePageWidget(),
     Routes.estadisticas: (context) => const EstadisticasView(),
-    Routes.perfil: (context) => const ProfileAdminView(),
+    Routes.perfil: (context) => const ProfileAdminView(userData: null),
     Routes.tiempoEstacionamiento: (context) => const TiempoEstacionamientoView(),
     Routes.preferencias: (context) => const PreferenciasView(),
     Routes.permanencia: (context) => const PermanenciaView(),

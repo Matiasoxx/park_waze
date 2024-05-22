@@ -35,7 +35,7 @@ class _AdminScaffoldState extends State<AdminScaffold> {
             label: 'Estadísticas',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.account_box),
             label: 'Perfil',
           ),
         ],

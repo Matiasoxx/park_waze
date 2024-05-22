@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class PreferenciasView extends StatelessWidget {
@@ -5,47 +6,40 @@ class PreferenciasView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Datos de muestra para las preferencias de los usuarios
-    final estacionamientos = [
-      {
-        'Piso': '3',
-        'Pos': 'A1',
-        'Solicitudes': 5,
-      },
-      {
-        'Piso': '1',
-        'Pos': 'A1',
-        'Solicitudes': 3,
-      },
-      {
-        'Piso': '2',
-        'Pos': 'C4',
-        'Solicitudes': 5,
-      },
-    ];
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Preferencias de los Usuarios'),
       ),
-      body: ListView.builder(
-        itemCount: estacionamientos.length,
-        itemBuilder: (context, index) {
-          final estacionamiento = estacionamientos[index];
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('Estacionamientos').snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final estacionamientos = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: estacionamientos.length,
+            itemBuilder: (context, index) {
+              final estacionamiento = estacionamientos[index];
+              final piso = estacionamiento['Piso'] ?? 'Desconocido';
+              final pos = estacionamiento['Pos'] ?? 'Desconocida';
+              final solicitudes = estacionamiento['Solicitudes'] ?? 0;
 
-          return Card(
-            margin: const EdgeInsets.all(10.0),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Piso: ${estacionamiento['Piso']}'),
-                  Text('Posición: ${estacionamiento['Pos']}'),
-                  Text('Solicitudes: ${estacionamiento['Solicitudes']}'),
-                ],
-              ),
-            ),
+              return Card(
+                margin: const EdgeInsets.all(10.0),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Piso: $piso'),
+                      Text('Posición: $pos'),
+                      Text('Solicitudes: $solicitudes'),
+                    ],
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

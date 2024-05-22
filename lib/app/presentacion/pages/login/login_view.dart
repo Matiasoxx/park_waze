@@ -109,6 +109,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -123,7 +124,7 @@ class _LoginViewState extends State<LoginView> {
                   child: Text(
                     S.of(context).bLogin,
                     style: const TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 34.0, // Tamaño de la fuente
                       fontWeight: FontWeight.bold, // Grosor de la fuente
                     ),
@@ -137,8 +138,19 @@ class _LoginViewState extends State<LoginView> {
                   focusNode: _emailFocusNode,
                   decoration: InputDecoration(
                     labelText: S.of(context).lCorreo,
-                    prefixIcon: const Icon(Icons.email),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    prefixIcon: const Icon(Icons.email, color: Colors.white),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
                     if (_emailController.text != value.replaceAll(' ', '')) {
@@ -163,17 +175,30 @@ class _LoginViewState extends State<LoginView> {
                   focusNode: _passFocusNode,
                   decoration: InputDecoration(
                     labelText: S.of(context).lContra,
-                    prefixIcon: const Icon(Icons.lock),
+                    labelStyle: const TextStyle(color: Colors.white),
+                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
                     suffixIcon: IconButton(
                       icon: Icon(
-                          _isObscure ? Icons.visibility : Icons.visibility_off),
+                        _isObscure ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.white,
+                      ),
                       onPressed: () {
                         setState(() {
                           _isObscure = !_isObscure;
                         });
                       },
                     ),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
                   ),
+                  style: const TextStyle(color: Colors.white),
                   onChanged: (value) {
                     _passController.text = value.replaceAll(' ', '');
                     _passController.selection = TextSelection.fromPosition(
@@ -190,18 +215,31 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 const SizedBox(height: 40),
                 TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/reset-pass');
-                    },
-                    child: Text(S.of(context).forgotPassw)),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/reset-pass');
+                  },
+                  child: Text(
+                    S.of(context).forgotPassw,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white, // Text color
+                  ),
                   onPressed: () {
                     onFormLogin(
                         _emailController.text, _passController.text, context);
                   },
                   child: Text(S.of(context).ingresar),
                 ),
+                const SizedBox(height: 10),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white, // Text color
+                  ),
                   onPressed: () {
                     Navigator.pushNamed(context, "/sign-in");
                   },

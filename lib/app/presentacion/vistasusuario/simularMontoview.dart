@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:park_waze/generated/l10n.dart';
 
 class SimularMontoView extends StatefulWidget {
   const SimularMontoView({super.key});
@@ -92,8 +93,9 @@ class _SimularMontoViewState extends State<SimularMontoView> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: const Center(
-            child: Text('Tarifa', style: TextStyle(color: Colors.white))),
+        title: Center(
+            child: Text(S.of(context).tarif,
+                style: const TextStyle(color: Colors.white))),
         backgroundColor: Colors.black,
         elevation: 0,
       ),

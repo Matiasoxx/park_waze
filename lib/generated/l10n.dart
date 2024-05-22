@@ -619,6 +619,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Tarifa`
+  String get tarif {
+    return Intl.message(
+      'Tarifa',
+      name: 'tarif',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

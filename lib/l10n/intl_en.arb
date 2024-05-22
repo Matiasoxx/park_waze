@@ -65,5 +65,7 @@
     "deletAcc":"Delete account",
 
     "fullNam":"Full Name",
-    "edad":"Age"
+    "edad":"Age",
+
+    "tarif":"Price"
 }

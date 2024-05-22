@@ -102,7 +102,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bienvenido a Park Waze"),
         "taVerifyEmail": MessageLookupByLibrary.simpleMessage(
             "Verifica tú correo electronico"),
+<<<<<<< HEAD
         "tarif": MessageLookupByLibrary.simpleMessage("Tarifa"),
+=======
+>>>>>>> main
         "titleRegister": MessageLookupByLibrary.simpleMessage("Registrarse"),
         "tituloProyecto": MessageLookupByLibrary.simpleMessage("Park Waze"),
         "uvHistory": MessageLookupByLibrary.simpleMessage("Historial"),

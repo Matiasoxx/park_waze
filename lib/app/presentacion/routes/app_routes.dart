@@ -32,8 +32,12 @@ Map<String, Widget Function(BuildContext)> get appRoutes {
     Routes.homeh: (context) => const HomePageWidget(),
     Routes.estadisticas: (context) => const EstadisticasView(),
     Routes.perfil: (context) => const ProfileAdminView(userData: null),
+<<<<<<< HEAD
     Routes.tiempoEstacionamiento: (context) =>
         const TiempoEstacionamientoView(),
+=======
+    Routes.tiempoEstacionamiento: (context) => const TiempoEstacionamientoView(),
+>>>>>>> main
     Routes.preferencias: (context) => const PreferenciasView(),
     Routes.permanencia: (context) => const PermanenciaView(),
     Routes.reset_password: (context) => const ResetPasswordPage(),

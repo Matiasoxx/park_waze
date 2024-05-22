@@ -65,9 +65,14 @@
     "deletAcc":"Eliminar cuenta",
 
     "fullNam":"Nombre Completo",
+<<<<<<< HEAD
     "edad":"Edad",
 
     "tarif":"Tarifa"
     
+=======
+    "edad":"Edad"
+
+>>>>>>> main
 
 }

@@ -40,9 +40,13 @@ void main() async {
     isSignedIn: isSignedIn,
     userData: userData,
     userRole: userRole,
+<<<<<<< HEAD
     initialRoute: kIsWeb
         ? Routes.login
         : Routes.splash, // Ajustar la ruta inicial segÃºn la plataforma
+=======
+    initialRoute: kIsWeb ? Routes.login : Routes.splash, // Ajustar la ruta inicial según la plataforma
+>>>>>>> main
   ));
 }
 

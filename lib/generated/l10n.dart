@@ -619,6 +619,7 @@ class S {
       args: [],
     );
   }
+<<<<<<< HEAD
 
   /// `Tarifa`
   String get tarif {
@@ -629,6 +630,8 @@ class S {
       args: [],
     );
   }
+=======
+>>>>>>> main
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

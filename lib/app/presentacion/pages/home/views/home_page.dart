@@ -53,7 +53,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
+<<<<<<< HEAD
         backgroundColor: Theme.of(context).colorScheme.background,
+=======
+        backgroundColor: Theme.of(context).colorScheme.surface,
+>>>>>>> main
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(

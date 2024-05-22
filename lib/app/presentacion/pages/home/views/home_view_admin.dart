@@ -17,8 +17,12 @@ class _HomeViewAdminState extends State<HomeViewAdmin> {
   static final List<Widget> _widgetOptions = <Widget>[
     const Center(child: Text('Inicio')),
     const EstadisticasView(),
+<<<<<<< HEAD
     const ProfileAdminView(
         userData: null), // Asegúrate de pasar userData correctamente
+=======
+    const ProfileAdminView(userData: null), // Asegúrate de pasar userData correctamente
+>>>>>>> main
   ];
 
   void _onItemTapped(int index) {

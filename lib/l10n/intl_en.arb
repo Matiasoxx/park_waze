@@ -65,7 +65,11 @@
     "deletAcc":"Delete account",
 
     "fullNam":"Full Name",
+<<<<<<< HEAD
     "edad":"Age",
 
     "tarif":"Price"
+=======
+    "edad":"Age"
+>>>>>>> main
 }

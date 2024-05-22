@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+<<<<<<< HEAD
 import 'package:park_waze/generated/l10n.dart';
+=======
+>>>>>>> main
 
 class SimularMontoView extends StatefulWidget {
   const SimularMontoView({super.key});
@@ -12,8 +15,12 @@ class SimularMontoView extends StatefulWidget {
 class _SimularMontoViewState extends State<SimularMontoView> {
   final TextEditingController _startTimeController = TextEditingController();
   final TextEditingController _endTimeController = TextEditingController();
+<<<<<<< HEAD
   final TextEditingController _additionalTimeController =
       TextEditingController();
+=======
+  final TextEditingController _additionalTimeController = TextEditingController();
+>>>>>>> main
 
   double? _initialAmount;
   double? _newAmount;
@@ -42,11 +49,16 @@ class _SimularMontoViewState extends State<SimularMontoView> {
 
     if (startTime == null || endTime == null) {
       ScaffoldMessenger.of(context).showSnackBar(
+<<<<<<< HEAD
         const SnackBar(content: Text('Por favor, introduce horas vÃ¡lidas.')),
+=======
+        const SnackBar(content: Text('Por favor, introduce horas válidas.')),
+>>>>>>> main
       );
       return;
     }
 
+<<<<<<< HEAD
     final differenceInMinutes =
         endTime.difference(startTime).inMinutes.toDouble();
     if (differenceInMinutes < 0) {
@@ -54,15 +66,25 @@ class _SimularMontoViewState extends State<SimularMontoView> {
         const SnackBar(
             content:
                 Text('La hora de fin debe ser mayor que la hora de inicio.')),
+=======
+    final differenceInMinutes = endTime.difference(startTime).inMinutes.toDouble();
+    if (differenceInMinutes < 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('La hora de fin debe ser mayor que la hora de inicio.')),
+>>>>>>> main
       );
       return;
     }
 
     final ratePerMinute = _ratePerMinute[_selectedParkingType]!;
     final initialAmount = differenceInMinutes * ratePerMinute;
+<<<<<<< HEAD
     final newAmount = additionalTime > 0
         ? (differenceInMinutes + additionalTime) * ratePerMinute
         : null;
+=======
+    final newAmount = additionalTime > 0 ? (differenceInMinutes + additionalTime) * ratePerMinute : null;
+>>>>>>> main
 
     setState(() {
       _initialAmount = initialAmount;
@@ -93,9 +115,13 @@ class _SimularMontoViewState extends State<SimularMontoView> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+<<<<<<< HEAD
         title: Center(
             child: Text(S.of(context).tarif,
                 style: const TextStyle(color: Colors.white))),
+=======
+        title: const Center(child: Text('Tarifa', style: TextStyle(color: Colors.white))),
+>>>>>>> main
         backgroundColor: Colors.black,
         elevation: 0,
       ),
@@ -111,8 +137,12 @@ class _SimularMontoViewState extends State<SimularMontoView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+<<<<<<< HEAD
               const Text('Tipos de estacionamiento',
                   style: TextStyle(color: Colors.white, fontSize: 16)),
+=======
+              const Text('Tipos de estacionamiento', style: TextStyle(color: Colors.white, fontSize: 16)),
+>>>>>>> main
               const SizedBox(height: 10),
               DropdownButton<String>(
                 value: _selectedParkingType,
@@ -128,8 +158,12 @@ class _SimularMontoViewState extends State<SimularMontoView> {
                     _selectedParkingType = newValue!;
                   });
                 },
+<<<<<<< HEAD
                 items: _ratePerMinute.keys
                     .map<DropdownMenuItem<String>>((String value) {
+=======
+                items: _ratePerMinute.keys.map<DropdownMenuItem<String>>((String value) {
+>>>>>>> main
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
@@ -209,16 +243,25 @@ class _SimularMontoViewState extends State<SimularMontoView> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text('Monto inicial: \$${_initialAmount!.toInt()}',
+<<<<<<< HEAD
                       style:
                           const TextStyle(color: Colors.white, fontSize: 18)),
+=======
+                      style: const TextStyle(color: Colors.white, fontSize: 18)),
+>>>>>>> main
                 ),
               if (_newAmount != null)
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
+<<<<<<< HEAD
                   child: Text(
                       'Monto con tiempo adicional: \$${_newAmount!.toInt()}',
                       style:
                           const TextStyle(color: Colors.white, fontSize: 18)),
+=======
+                  child: Text('Monto con tiempo adicional: \$${_newAmount!.toInt()}',
+                      style: const TextStyle(color: Colors.white, fontSize: 18)),
+>>>>>>> main
                 ),
             ],
           ),

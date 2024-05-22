@@ -109,7 +109,10 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       backgroundColor: Colors.black,
+=======
+>>>>>>> main
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
@@ -124,7 +127,11 @@ class _LoginViewState extends State<LoginView> {
                   child: Text(
                     S.of(context).bLogin,
                     style: const TextStyle(
+<<<<<<< HEAD
                       color: Colors.white,
+=======
+                      color: Colors.black,
+>>>>>>> main
                       fontSize: 34.0, // Tamaño de la fuente
                       fontWeight: FontWeight.bold, // Grosor de la fuente
                     ),
@@ -138,6 +145,7 @@ class _LoginViewState extends State<LoginView> {
                   focusNode: _emailFocusNode,
                   decoration: InputDecoration(
                     labelText: S.of(context).lCorreo,
+<<<<<<< HEAD
                     labelStyle: const TextStyle(color: Colors.white),
                     prefixIcon: const Icon(Icons.email, color: Colors.white),
                     enabledBorder: const OutlineInputBorder(
@@ -151,6 +159,10 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                   style: const TextStyle(color: Colors.white),
+=======
+                    prefixIcon: const Icon(Icons.email),
+                  ),
+>>>>>>> main
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
                     if (_emailController.text != value.replaceAll(' ', '')) {
@@ -175,6 +187,7 @@ class _LoginViewState extends State<LoginView> {
                   focusNode: _passFocusNode,
                   decoration: InputDecoration(
                     labelText: S.of(context).lContra,
+<<<<<<< HEAD
                     labelStyle: const TextStyle(color: Colors.white),
                     prefixIcon: const Icon(Icons.lock, color: Colors.white),
                     suffixIcon: IconButton(
@@ -182,12 +195,19 @@ class _LoginViewState extends State<LoginView> {
                         _isObscure ? Icons.visibility : Icons.visibility_off,
                         color: Colors.white,
                       ),
+=======
+                    prefixIcon: const Icon(Icons.lock),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          _isObscure ? Icons.visibility : Icons.visibility_off),
+>>>>>>> main
                       onPressed: () {
                         setState(() {
                           _isObscure = !_isObscure;
                         });
                       },
                     ),
+<<<<<<< HEAD
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
                     ),
@@ -199,6 +219,9 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                   style: const TextStyle(color: Colors.white),
+=======
+                  ),
+>>>>>>> main
                   onChanged: (value) {
                     _passController.text = value.replaceAll(' ', '');
                     _passController.selection = TextSelection.fromPosition(
@@ -215,6 +238,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 const SizedBox(height: 40),
                 TextButton(
+<<<<<<< HEAD
                   onPressed: () {
                     Navigator.pushNamed(context, '/reset-pass');
                   },
@@ -228,18 +252,29 @@ class _LoginViewState extends State<LoginView> {
                     foregroundColor: Colors.black,
                     backgroundColor: Colors.white, // Text color
                   ),
+=======
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/reset-pass');
+                    },
+                    child: Text(S.of(context).forgotPassw)),
+                ElevatedButton(
+>>>>>>> main
                   onPressed: () {
                     onFormLogin(
                         _emailController.text, _passController.text, context);
                   },
                   child: Text(S.of(context).ingresar),
                 ),
+<<<<<<< HEAD
                 const SizedBox(height: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
                     backgroundColor: Colors.white, // Text color
                   ),
+=======
+                ElevatedButton(
+>>>>>>> main
                   onPressed: () {
                     Navigator.pushNamed(context, "/sign-in");
                   },
